@@ -1,5 +1,9 @@
+#include <vector>
+
 #include <SFML/Graphics.hpp>
+
 #include "Variables.h"
+
 
 namespace Events {
 
@@ -11,7 +15,7 @@ namespace Events {
 
 
 
-			float veclocity = (float)key_pressed * 0.05; 
+			float veclocity = (float)key_pressed * player.speed; 
 
 			switch (events.key.code) {
 				case sf::Keyboard::Up:
@@ -31,17 +35,31 @@ namespace Events {
 		}
 	}
 
-	void event_handler(sf::RenderWindow& window, Player& player) {
+	void event_handler(sf::RenderWindow& window, Player& player, std::vector<Obstacle>& obstacles) {
 
 		sf::Event events; 
 
 		while (window.pollEvent(events)) {
+			
+			// Window close Event
 			if (events.type == sf::Event::Closed) {
 				window.close(); 
 			}
 
+			// Up/Down/Right/Left Player Movement
 			if (events.type == sf::Event::KeyPressed || events.type == sf::Event::KeyReleased) {
 				evaluate_movement(events, player, events.type == sf::Event::KeyPressed);
+			}
+
+			// Object creation (Mouse Events) 
+			if (events.type == sf::Event::MouseButtonPressed) {
+				int x = sf::Mouse::getPosition(window).x; 
+				int y = sf::Mouse::getPosition(window).y; 
+				obstacles.push_back(Obstacle(x, y, 0, 0)); 
+			}
+
+			if (events.type == sf::Event::MouseButtonReleased) {
+				obstacles.back().is_in_creation = false; 
 			}
 		}
 

@@ -3,6 +3,6 @@
 
 namespace Events {
 
-	void event_handler(sf::RenderWindow&, Player&); 
+	void event_handler(sf::RenderWindow&, Player&, std::vector<Obstacle>&); 
 
 }

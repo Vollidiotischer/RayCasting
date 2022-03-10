@@ -9,6 +9,6 @@ namespace Drawing {
 
 	}
 
-	void draw_screen(sf::RenderWindow&, Player&); 
+	void draw_screen(sf::RenderWindow&, Player&, std::vector<Obstacle>&); 
 
 }
