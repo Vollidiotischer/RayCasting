@@ -1,4 +1,6 @@
+#include <iostream>
 #include <vector>
+#include <array>
 
 #include <SFML/Graphics.hpp>
 
@@ -60,6 +62,8 @@ namespace Events {
 
 			if (events.type == sf::Event::MouseButtonReleased) {
 				obstacles.back().is_in_creation = false; 
+				std::cout << "Obstacle: " << obstacles.back().x << " " << obstacles.back().y << " " << obstacles.back().w << " " << obstacles.back().h << std::endl;
+
 			}
 		}
 
