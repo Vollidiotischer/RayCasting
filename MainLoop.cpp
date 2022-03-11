@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 #include <array>
 
@@ -17,15 +18,13 @@ namespace MainLoop {
 
 			rw.setKeyRepeatEnabled(false);
 		}
-
-
 	}
 
 	void run() {
 
 		sf::RenderWindow window(sf::VideoMode(screen_width, screen_height), "Ray Casting");
 
-		Player player(screen_width / 2, screen_height / 2, 25, 0.15); 
+		Player player(screen_width / 2, screen_height / 2, 15, 0.15); 
 
 		std::vector<Obstacle> obstacles; 
 
@@ -44,11 +43,3 @@ namespace MainLoop {
 	}
 
 }
-
-
-/*
-
-Todo: 
-	- make non-parallel (Horizontal or vertical) planes possible
-
-*/

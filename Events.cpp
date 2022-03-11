@@ -48,20 +48,38 @@ namespace Events {
 				window.close(); 
 			}
 
+			if (events.type == sf::Event::KeyPressed) {
+				if (events.key.code == sf::Keyboard::Space) {
+					player.toggel_control_mode(); 
+				}
+			}
+
 			// Up/Down/Right/Left Player Movement
-			if (events.type == sf::Event::KeyPressed || events.type == sf::Event::KeyReleased) {
-				evaluate_movement(events, player, events.type == sf::Event::KeyPressed);
+			if (player.is_controlled_by_keyboard) {
+				if (events.type == sf::Event::KeyPressed || events.type == sf::Event::KeyReleased) {
+					evaluate_movement(events, player, events.type == sf::Event::KeyPressed);
+				}
+			}
+			else {
+				player.x = sf::Mouse::getPosition(window).x;
+				player.y = sf::Mouse::getPosition(window).y;
+
 			}
 
 			// Object creation (Mouse Events) 
 			if (events.type == sf::Event::MouseButtonPressed) {
-				int x = sf::Mouse::getPosition(window).x; 
-				int y = sf::Mouse::getPosition(window).y; 
-				obstacles.push_back(Obstacle(x, y, 0, 0)); 
+				int x = sf::Mouse::getPosition(window).x;
+				int y = sf::Mouse::getPosition(window).y;
+
+				// Right Mouse -> line
+				// Left Mouse -> Rect 
+
+				obstacles.push_back(Obstacle(x, y, 0, 0, events.key.code == sf::Mouse::Left));
+
 			}
 
 			if (events.type == sf::Event::MouseButtonReleased) {
-				obstacles.back().is_in_creation = false; 
+				obstacles.back().is_in_creation = false;
 				std::cout << "Obstacle: " << obstacles.back().x << " " << obstacles.back().y << " " << obstacles.back().w << " " << obstacles.back().h << std::endl;
 
 			}

@@ -10,13 +10,6 @@ constexpr float angle_between_rays = 2; // in degrees
 constexpr int num_rays = 360 / angle_between_rays; 
 
 
-struct Line {
-	int x1, x2, y1, y2; 
-
-	Line(int x1, int y1, int x2, int y2) :
-		x1(x1), x2(x2), y1(y1), y2(y2) {}
-};
-
 struct Ray {
 	int x, y; 
 	float length, angle; 
@@ -47,7 +40,8 @@ struct Player {
 	float speed; 
 	float vx = 0, vy = 0; 
 	float x, y, r; 
-	float angle = 0; 
+
+	bool is_controlled_by_keyboard = false; 
 
 	std::array<Ray, num_rays> rays; 
 
@@ -65,6 +59,12 @@ struct Player {
 
 		init_rays(); 
 
+	}
+
+	void toggel_control_mode() {
+		is_controlled_by_keyboard = !is_controlled_by_keyboard; 
+		vx = 0; 
+		vy = 0; 
 	}
 
 	void init_rays() {
@@ -99,11 +99,31 @@ struct Player {
 struct Obstacle {
 
 	int x, y; 
-	int w, h; 
+	int w, h;
+
+	bool is_rect; // 1 -> Rect; 0 -> Line
 
 	bool is_in_creation; 
 
-	Obstacle(int x, int y, int w, int h, bool is_in_creation = true):
-		x(x), y(y), w(w), h(h), is_in_creation(is_in_creation) {}
+	Obstacle(int x, int y, int w, int h,bool is_rect = true, bool is_in_creation = true):
+		x(x), y(y), w(w), h(h), is_rect(is_rect), is_in_creation(is_in_creation) {}
 	
+};
+
+struct Line {
+	int x, y, w, h; 
+	int thickness; 
+	float length, angle; 
+
+	Line(int x, int y, int w, int h, int thickness, float angle = 0) : x(x), y(y), w(w), h(h), thickness(thickness), angle(angle) {
+
+		this->length = sqrt((float)(w * w + h * h)); 
+
+	}
+
+	float calculate_angle() {
+
+		return acos(w / length) * 180.0 / 3.1415; 
+
+	}
 };
