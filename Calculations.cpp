@@ -129,6 +129,8 @@ namespace Calculations {
 
 	void calculate_frame(sf::RenderWindow& rw, Player& player, std::vector<Obstacle>& obstacles) {
 
+
+		// Delta time
 		static sf::Clock clock; 
 		static float old_time; 
 		float delta = (clock.getElapsedTime().asMicroseconds() - old_time) / 1000.0; 
@@ -137,8 +139,6 @@ namespace Calculations {
 		player.advance_position(delta); 
 
 		update_obstacles_in_creation(rw, obstacles); 
-
-		player.update_ray_position(); 
 
 		calculate_ray_length(obstacles, player); 
 

@@ -10,6 +10,22 @@
 namespace Events {
 
 	namespace {
+
+		void evaluate_rotation(sf::Event& events, Player& player, bool key_pressed) {
+
+			float rottion_velocity = (float)key_pressed * player.rotation_speed;
+
+			switch (events.key.code) {
+				case sf::Keyboard::D:
+					player.delta_angle = -rottion_velocity;
+					break;
+				case sf::Keyboard::F:
+					player.delta_angle = rottion_velocity;
+					break;
+			}
+
+		}
+
 		void evaluate_movement(sf::Event& events, Player& player, bool key_pressed) {
 
 			// key_pressed:	if key_pressed is 1 then the key was pressed and the velocity is set
@@ -17,21 +33,22 @@ namespace Events {
 
 
 
-			float veclocity = (float)key_pressed * player.speed; 
+			float velocity = (float)key_pressed * player.speed; 
 
 			switch (events.key.code) {
 				case sf::Keyboard::Up:
-					player.vy = -veclocity;
+					player.vy = -velocity;
 					break;
 				case sf::Keyboard::Down:
-					player.vy = veclocity;
+					player.vy = velocity;
 					break;
 				case sf::Keyboard::Right:
-					player.vx = veclocity;
+					player.vx = velocity;
 					break;
 				case sf::Keyboard::Left:
-					player.vx = -veclocity;
+					player.vx = -velocity;
 					break;
+
 			}
 
 		}
@@ -54,13 +71,17 @@ namespace Events {
 				}
 			}
 
-			// Up/Down/Right/Left Player Movement
-			if (player.is_controlled_by_keyboard) {
-				if (events.type == sf::Event::KeyPressed || events.type == sf::Event::KeyReleased) {
+
+			// player Movement & rotation
+			if (events.type == sf::Event::KeyPressed || events.type == sf::Event::KeyReleased) {
+				if (player.is_controlled_by_keyboard) {
 					evaluate_movement(events, player, events.type == sf::Event::KeyPressed);
 				}
+
+				evaluate_rotation(events, player, events.type == sf::Event::KeyPressed);
 			}
-			else {
+
+			if (!player.is_controlled_by_keyboard) {
 				player.x = sf::Mouse::getPosition(window).x;
 				player.y = sf::Mouse::getPosition(window).y;
 

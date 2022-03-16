@@ -1,13 +1,20 @@
 #pragma once
 
+#include <array>
+
 #include <SFML/Graphics.hpp>
 
 
 constexpr int screen_width = 750; 
 constexpr int screen_height = 750;
 
-constexpr float angle_between_rays = 2; // in degrees 
-constexpr int num_rays = 360 / angle_between_rays; 
+constexpr int screen_width_3d = 750; 
+constexpr int screen_height_3d = 500; 
+
+constexpr float player_view_range = 45; // the players view angle-range in degrees
+
+constexpr float angle_between_rays = 0.1; // in degrees 
+constexpr int num_rays = player_view_range / angle_between_rays; 
 
 constexpr int default_ray_length = 1000; 
 
@@ -38,9 +45,10 @@ struct Ray {
 };
 
 struct Player {
-	float speed; 
+	float speed, rotation_speed; 
 	float vx = 0, vy = 0; 
 	float x, y, r; 
+	float delta_angle = 0, angle = 0; 
 
 	bool is_controlled_by_keyboard = false; 
 
@@ -48,7 +56,7 @@ struct Player {
 
 	sf::CircleShape shape; 
 
-	Player(int x, int y, int r, float speed = 0.05) : x(x), y(y), r(r), speed(speed) {
+	Player(int x, int y, int r, float speed = 0.05, float rotation_speed = 0.05) : x(x), y(y), r(r), speed(speed), rotation_speed(rotation_speed){
 		
 		shape =  sf::CircleShape(r, 10); 
 		
@@ -70,7 +78,7 @@ struct Player {
 
 	void init_rays() {
 		for (int i = 0; i < num_rays; i++) {
-			rays[i] = Ray(x, y, angle_between_rays * i, 1000);
+			rays[i] = Ray(x, y, angle + angle_between_rays * i, 1000);
 		}
 
 	}
@@ -84,11 +92,26 @@ struct Player {
 
 	}
 
+	void update_ray_angle() {
+
+		for (int i = 0; i < num_rays; i++) {
+			rays[i].angle = this->angle + angle_between_rays * i; 
+			rays[i].adjust_direction(); 
+		}
+
+	}
+
 	void advance_position(float delta) {
 		x += vx * delta; 
 		y += vy * delta;
 
+		angle += delta_angle * delta; 
+
 		update_position(); 
+
+		update_ray_angle();
+
+		update_ray_position(); 
 	}
 
 	void update_position() {
