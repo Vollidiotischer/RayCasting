@@ -13,39 +13,63 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Quelldateien\RenderWindow">
+      <UniqueIdentifier>{37fb1897-f2a8-41f5-9e12-718627d1a78c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Base">
+      <UniqueIdentifier>{36202173-8574-4fb9-8e79-543655e809e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="MainLoop.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Events.cpp">
-      <Filter>Quelldateien</Filter>
+    <ClCompile Include="Calculations.cpp">
+      <Filter>Quelldateien\Base</Filter>
     </ClCompile>
     <ClCompile Include="Drawing.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Base</Filter>
     </ClCompile>
-    <ClCompile Include="Calculations.cpp">
-      <Filter>Quelldateien</Filter>
+    <ClCompile Include="Events.cpp">
+      <Filter>Quelldateien\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="MainLoop.cpp">
+      <Filter>Quelldateien\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderDrawing.cpp">
+      <Filter>Quelldateien\RenderWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="RendererMain.cpp">
+      <Filter>Quelldateien\RenderWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderEvents.cpp">
+      <Filter>Quelldateien\RenderWindow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MainLoop.h">
-      <Filter>Quelldateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Events.h">
-      <Filter>Quelldateien</Filter>
-    </ClInclude>
     <ClInclude Include="Variables.h">
       <Filter>Quelldateien</Filter>
     </ClInclude>
-    <ClInclude Include="Drawing.h">
-      <Filter>Quelldateien</Filter>
-    </ClInclude>
     <ClInclude Include="Calculations.h">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawing.h">
+      <Filter>Quelldateien\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Events.h">
+      <Filter>Quelldateien\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="MainLoop.h">
+      <Filter>Quelldateien\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderDrawing.h">
+      <Filter>Quelldateien\RenderWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="RendererMain.h">
+      <Filter>Quelldateien\RenderWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderEvents.h">
+      <Filter>Quelldateien\RenderWindow</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

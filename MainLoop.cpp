@@ -20,13 +20,9 @@ namespace MainLoop {
 		}
 	}
 
-	void run() {
+	void run(Player& player, std::vector<Obstacle>& obstacles) {
 
 		sf::RenderWindow window(sf::VideoMode(screen_width, screen_height), "Ray Casting");
-
-		Player player(screen_width / 2, screen_height / 2, 15, 0.15); 
-
-		std::vector<Obstacle> obstacles; 
 
 		init_SFML(window); 
 		

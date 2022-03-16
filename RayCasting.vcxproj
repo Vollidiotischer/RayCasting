@@ -150,12 +150,18 @@
     <ClCompile Include="Events.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainLoop.cpp" />
+    <ClCompile Include="RenderDrawing.cpp" />
+    <ClCompile Include="RendererMain.cpp" />
+    <ClCompile Include="RenderEvents.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculations.h" />
     <ClInclude Include="Drawing.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="MainLoop.h" />
+    <ClInclude Include="RenderDrawing.h" />
+    <ClInclude Include="RendererMain.h" />
+    <ClInclude Include="RenderEvents.h" />
     <ClInclude Include="Variables.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

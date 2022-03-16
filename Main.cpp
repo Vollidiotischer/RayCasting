@@ -1,4 +1,13 @@
+#include <iostream>
+
+#include <thread>
+#include <array>
+#include <vector>
+
+
+#include "Variables.h"
 #include "MainLoop.h"
+#include "RendererMain.h"
 
 
 /*
@@ -17,7 +26,18 @@ Controls:
 
 int main() {
 
-	MainLoop::run(); 
+	Player player(screen_width / 2, screen_height / 2, 15, 0.15);
+
+	std::vector<Obstacle> obstacles;
+
+
+	// pass player and objects to both run functions by refference 
+	std::thread t1(MainLoop::run, std::ref(player), std::ref(obstacles));
+
+	RendererMain::run(player, obstacles); 
+
+	// wait for the MainLoop::run function to finish
+	t1.join(); 
 
 	return 0; 
 }

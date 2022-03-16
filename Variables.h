@@ -9,15 +9,16 @@ constexpr int screen_height = 750;
 constexpr float angle_between_rays = 2; // in degrees 
 constexpr int num_rays = 360 / angle_between_rays; 
 
+constexpr int default_ray_length = 1000; 
 
 struct Ray {
 	int x, y; 
 	float length, angle; 
 	float dx = 0, dy = 0; 
 
-	Ray() : x(0), y(0), length(0), angle(0) {}
+	Ray() : x(0), y(0), length(default_ray_length), angle(0) {}
 
-	Ray(int x, int y, float angle, float length = 0) : x(x), y(y), angle(angle), length(length) {
+	Ray(int x, int y, float angle, float length = default_ray_length) : x(x), y(y), angle(angle), length(length) {
 	
 		adjust_direction(); 
 	}

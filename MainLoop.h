@@ -3,6 +3,6 @@
 
 namespace MainLoop {
 
-	void run(); 
+	void run(Player&, std::vector<Obstacle>&); 
 
 }

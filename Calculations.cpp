@@ -47,25 +47,25 @@ namespace Calculations {
 		void calculate_ray_length(std::vector<Obstacle>& obstacles, Player& player) {
 
 			/*
-			
-			Ray: (x, y) + lambda * (dx, dy)
+			SQUARE: 
+				Ray: (x, y) + lambda * (dx, dy)
 
-			Obstacle (o): consists of 4 vectors (The 4 Sides of the Square) 
-				R1: (o.x, o.y) + lambda_2 * (o.w, 0)		[Top]
-				R2: (o.x, o.y) + lambda_2 * (0, o.h)		[Left]
-				R3: (0.x + 0.w, o.y) + lambda_2 * (0, o.h)	[Right]
-				R4: (o.x, o.y + o.h) + lambda_2 * (o.w, 0)	[Bottom]
+				Obstacle (o): consists of 4 vectors (The 4 Sides of the Square) 
+					R1: (o.x, o.y) + lambda_2 * (o.w, 0)		[Top]
+					R2: (o.x, o.y) + lambda_2 * (0, o.h)		[Left]
+					R3: (0.x + 0.w, o.y) + lambda_2 * (0, o.h)	[Right]
+					R4: (o.x, o.y + o.h) + lambda_2 * (o.w, 0)	[Bottom]
 
-			Calculate Intersection between the ray and each side of an obstacle 
-				-> lambda_rx_1 => how long the ray has to be
-				-> lambda_rx_2 => if the ray hits the side (and the intersection is not outside of [0, 1]) 
-					-> if lambda_rx_2 is not in [0, 1] then lambda_rx_1 is invalid
+				Calculate Intersection between the ray and each side of an obstacle 
+					-> lambda_rx_1 => how long the ray has to be
+					-> lambda_rx_2 => if the ray hits the side (and the intersection is not outside of [0, 1]) 
+						-> if lambda_rx_2 is not in [0, 1] then lambda_rx_1 is invalid
 			
 			*/
 
 			for (int i = 0; i < player.rays.size(); i++) {
 
-				player.rays[i].set_length(1000);
+				player.rays[i].set_length(default_ray_length);
 
 				float min_lambda = 1.0;
 
@@ -112,7 +112,6 @@ namespace Calculations {
 
 						if (lambda_2 >= 0 && lambda_2 <= 1 && lambda_1 < min_lambda && lambda_1 >= 0) {
 							min_lambda = lambda_1; 
-							//r.set_length(r.length * lambda_1);
 						}
 					}
 				}
