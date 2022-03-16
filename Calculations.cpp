@@ -100,6 +100,7 @@ namespace Calculations {
 						// get the smallest lambda -> first obstacle hit 
 						float lambdas[] = { lambda_r1_1, lambda_r2_1, lambda_r3_1, lambda_r4_1, min_lambda };
 						min_lambda = find_min_lambda_range(lambdas);
+
 					}
 					else {
 

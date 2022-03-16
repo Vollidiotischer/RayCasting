@@ -8,15 +8,15 @@
 constexpr int screen_width = 750; 
 constexpr int screen_height = 750;
 
-constexpr int screen_width_3d = 750; 
-constexpr int screen_height_3d = 500; 
+constexpr int screen_width_3d = 900; 
+constexpr int screen_height_3d = 506; 
 
-constexpr float player_view_range = 45; // the players view angle-range in degrees
+constexpr float player_view_range = 75; // the players view angle-range in degrees
 
-constexpr float angle_between_rays = 0.1; // in degrees 
+constexpr float angle_between_rays = 0.2; // in degrees 
 constexpr int num_rays = player_view_range / angle_between_rays; 
 
-constexpr int default_ray_length = 1000; 
+constexpr int default_ray_length = 5000; 
 
 struct Ray {
 	int x, y; 
