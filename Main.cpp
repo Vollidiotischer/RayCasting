@@ -27,8 +27,8 @@ Controls:
 
 int main() {
 
+	// Create Player Object and Obstacles List
 	Player player(screen_width / 2, screen_height / 2, 15, 0.15, 0.2);
-
 	std::vector<Obstacle> obstacles;
 
 

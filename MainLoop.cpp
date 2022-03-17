@@ -16,13 +16,17 @@ namespace MainLoop {
 	namespace {
 		void init_SFML(sf::RenderWindow& rw) {
 
+			rw.setPosition({ 150, 100 });
+
+			rw.requestFocus(); 
+
 			rw.setKeyRepeatEnabled(false);
 		}
 	}
 
 	void run(Player& player, std::vector<Obstacle>& obstacles) {
 
-		sf::RenderWindow window(sf::VideoMode(screen_width, screen_height), "Ray Casting");
+		sf::RenderWindow window(sf::VideoMode(screen_width, screen_height), "Ray Casting", sf::Style::Close | sf::Style::Titlebar);
 
 		init_SFML(window); 
 		

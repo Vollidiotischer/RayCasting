@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <mutex>
 
 #include <SFML/Graphics.hpp>
 
