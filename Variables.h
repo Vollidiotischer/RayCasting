@@ -50,6 +50,7 @@ struct Player {
 	float vx = 0, vy = 0; 
 	float x, y, r; 
 	float delta_angle = 0, angle = 0; 
+	int move_direction = 0; // 0 -> stationary; 1 -> forward; 2 -> backwards; 3 -> Left; 4 -> Right
 
 	bool is_controlled_by_keyboard = false; 
 
@@ -68,6 +69,35 @@ struct Player {
 		shape.setPosition(x, y); 
 
 		init_rays(); 
+
+	}
+
+	void calculate_movement() {
+
+		float angle_in_rads = (angle + player_view_range / 2.f) / 180.0 * 3.1415; 
+
+		switch (move_direction) {
+			case 0: 
+				vx = 0;
+				vy = 0; 
+				break; 
+			case 1: // Forward
+				vy = sin(angle_in_rads) * speed;
+				vx = cos(angle_in_rads) * speed;
+				break; 
+			case 2: // Backwards
+				vy = -sin(angle_in_rads) * speed;
+				vx = -cos(angle_in_rads) * speed;
+				break; 
+			case 3: // Left
+				vy = sin(angle_in_rads - 3.1415 / 2.f) * speed;
+				vx = cos(angle_in_rads - 3.1415 / 2.f) * speed;
+				break; 
+			case 4: // Right
+				vy = sin(angle_in_rads + 3.1415 / 2.f) * speed;
+				vx = cos(angle_in_rads + 3.1415 / 2.f) * speed;
+				break; 
+		}
 
 	}
 
@@ -99,6 +129,8 @@ struct Player {
 			rays[i].angle = this->angle + angle_between_rays * i; 
 			rays[i].adjust_direction(); 
 		}
+
+		calculate_movement(); 
 
 	}
 

@@ -32,32 +32,23 @@ namespace Events {
 			//				if key_pressed is 0 then the key was released and the velocity is reset
 
 
-
-			float velocity = (float)key_pressed * player.speed; 
-
-			float angle = (player.angle + player_view_range / 2.f) / 180 * 3.1415; 
-
 			switch (events.key.code) {
 				case sf::Keyboard::Up:
-					player.vy = sin(angle) * velocity;
-					player.vx = cos(angle) * velocity;
+					player.move_direction = 1 * key_pressed; 
 					break;
 				case sf::Keyboard::Down:
-					player.vy = -sin(angle) * velocity;
-					player.vx = -cos(angle) * velocity;
+					player.move_direction = 2 * key_pressed;
 					break;
 				case sf::Keyboard::Left:
-					angle -= 3.1415 / 2.f; 
-					player.vy = sin(angle) * velocity;
-					player.vx = cos(angle) * velocity;
+					player.move_direction = 3 * key_pressed;
 					break;
 				case sf::Keyboard::Right:
-					angle += 3.1415 / 2.f;
-					player.vy = sin(angle) * velocity;
-					player.vx = cos(angle) * velocity;
+					player.move_direction = 4 * key_pressed;
 					break;
 
 			}
+
+			player.calculate_movement(); 
 
 		}
 	}
