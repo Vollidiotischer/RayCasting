@@ -4,7 +4,7 @@
 
 #include "Variables.h"
 
-//
+
 
 namespace RenderDrawing {
 
