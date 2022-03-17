@@ -1,3 +1,4 @@
+#include <iostream>
 
 #include <SFML/Graphics.hpp>
 
@@ -21,7 +22,8 @@ namespace RenderDrawing {
 
 				float x = i * ray_thickness;
 
-				float height = screen_height_3d * 50 / player.rays[i].length;
+				float adjusted_ray_length = cos((player.rays[i].angle - player.rays[num_rays/2].angle) / 180.0 * 3.1415) * player.rays[i].length; 
+				float height = screen_height_3d * 50 / adjusted_ray_length;
 				height = height > screen_height_3d ? screen_height_3d : height; 
 
 				float rest_height = (screen_height_3d - height) / 2.f;
