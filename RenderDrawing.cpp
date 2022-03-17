@@ -21,7 +21,7 @@ namespace RenderDrawing {
 
 				float x = i * ray_thickness;
 
-				float height = screen_height_3d * 50 / player.rays[i].length; //(screen_height_3d - player.rays[i].length * height_factor);
+				float height = screen_height_3d * 50 / player.rays[i].length;
 				height = height > screen_height_3d ? screen_height_3d : height; 
 
 				float rest_height = (screen_height_3d - height) / 2.f;
