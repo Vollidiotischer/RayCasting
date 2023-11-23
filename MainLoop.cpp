@@ -1,45 +1,39 @@
+#include <array>
 #include <iostream>
 #include <vector>
-#include <array>
 
 #include <SFML/Graphics.hpp>
 
-#include "Variables.h"
-#include "Events.h"
 #include "Calculations.h"
 #include "Drawing.h"
-
-
+#include "Events.h"
+#include "Variables.h"
 
 namespace MainLoop {
 
-	namespace {
-		void init_SFML(sf::RenderWindow& rw) {
+namespace {
+void init_SFML(sf::RenderWindow &rw) { rw.setKeyRepeatEnabled(false); }
+} // namespace
 
-			rw.setKeyRepeatEnabled(false);
-		}
-	}
+void run() {
 
-	void run() {
+  sf::RenderWindow window(sf::VideoMode(screen_width, screen_height),
+                          "Ray Casting");
 
-		sf::RenderWindow window(sf::VideoMode(screen_width, screen_height), "Ray Casting");
+  Player player(screen_width / 2, screen_height / 2, 15, 0.15);
 
-		Player player(screen_width / 2, screen_height / 2, 15, 0.15); 
+  std::vector<Obstacle> obstacles;
 
-		std::vector<Obstacle> obstacles; 
+  init_SFML(window);
 
-		init_SFML(window); 
-		
-		while (window.isOpen()) {
+  while (window.isOpen()) {
 
-			Events::event_handler(window, player, obstacles); 
+    Events::event_handler(window, player, obstacles);
 
-			Calculations::calculate_frame(window, player, obstacles); 
+    Calculations::calculate_frame(window, player, obstacles);
 
-			Drawing::draw_screen(window, player, obstacles); 
-			
-		}
-
-	}
-
+    Drawing::draw_screen(window, player, obstacles);
+  }
 }
+
+} // namespace MainLoop
